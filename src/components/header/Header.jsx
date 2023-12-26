@@ -26,10 +26,10 @@ const Header = () => {
 
 
   const navItems = [
-    { name: 'Our Story', url: '/about' },
-    { name: 'Strains', url: '/buy' },
-    { name: 'Areas Served', url: '/cities' },
-    { name: 'Reviews', url: '/review' },
+    { name: 'Our Story', url: '/' },
+    { name: 'Strains', url: '/' },
+    { name: 'Areas Served', url: '/' },
+    { name: 'Reviews', url: '/buy' },
     { name: 'Buy', url: '/buy' },
   ];
 
