@@ -2,7 +2,7 @@ export const sliders = [
     {
         id: 1,
         title: 'Cereal Milk',
-        linkImg: 'image1.png',
+        linkImg: '/assets/image1.png',
         productId: "prod_OyBN2UIT2mjgSf",
         alt: "Cereal Milk",
         description: "Cereal Milk is a balanced hybrid strain with a sweet, creamy taste reminiscent of sugary cereal milk. It offers relaxation and creativity, perfect for social and introspective activities. Users appreciate its calming yet uplifting effects and its unique sweet aroma.",
@@ -11,7 +11,7 @@ export const sliders = [
     {
         id: 2,
         title: 'Wedding Cake',
-        linkImg: 'image2.png',
+        linkImg: '/assets/image2.png',
         productId: "prod_OcSdn7aEX7QJMI",
         alt: "Wedding Cake",
         description: "Wedding Cake, also known as \"Triangle Mints #23\" or \"Pink Cookies\" in Canada, is an indica-dominant hybrid" +
@@ -28,7 +28,7 @@ export const sliders = [
     {
         id: 3,
         title: 'Special Queen',
-        linkImg: 'image3.png',
+        linkImg: '/assets/image3.png',
         productId: "prod_OyBN2UIT2mjgSf",
         alt: "Cereal Milk",
         description: "Special Queen is a well-balanced hybrid with a 50/50 split between sativa and indica genetics," +
@@ -40,7 +40,7 @@ export const sliders = [
     {
         id: 4,
         title: 'Original Skunk',
-        linkImg: 'image4.png',
+        linkImg: '/assets/image4.png',
         productId: "prod_OcSdn7aEX7QJMI",
         alt: "Wedding Cake",
         description: "Original Skunk, also referred to as Skunk #1, is an indica-dominant hybrid strain with a rich history and significant" +

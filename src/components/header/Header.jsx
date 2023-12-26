@@ -1,131 +1,208 @@
-import  {useState} from 'react';
+import   {useState} from 'react';
 import {
     AppBar,
     Box,
-    Button,
     Drawer,
     IconButton,
+
     List,
     ListItem,
     ListItemText,
-
+    Menu,
+    MenuItem,
+    styled,
     Toolbar,
-    Typography
-} from '@mui/material';
+    Typography,
+} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-import NotFound from "../notFound/NotFound.jsx";
+import {Facebook, Instagram, Twitter} from "@mui/icons-material/";
+
+
 
 
 
 import {Link} from 'react-router-dom';
 
+
 const Header = () => {
 
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // State for mobile drawer
+    const [open, setOpen] = useState(false);
 
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const StyledToolbar = styled(Toolbar)({
+        display: "flex",
+        justifyContent: "space-between",
+    });
+
+    const SocialBox = styled(Box)({
+        display: "flex",
+        gap: 10,
+    });
+
+    const MenuBox = styled(List)({
+        display: "flex",
+        gap: 50,
+    });
+
+    // Styles for desktop links
+    const desktopLinkStyle = {
+        color: 'white', // Normal link color
+        textDecoration: 'none',
+        '&:visited': {
+            color: 'yellow', // Visited link color
+        },
+    };
+
+    // Styles for mobile links
+    const mobileLinkStyle = {
+        color: 'blue', // Normal link color for mobile
+        textDecoration: 'none',
+        '&:visited': {
+            color: 'purple', // Visited link color for mobile
+        },
+    };
 
 
-  const navItems = [
-    { name: 'Our Story', url: '/' },
-    { name: 'Strains', url: '/' },
-    { name: 'Areas Served', url: '/' },
-    { name: 'Reviews', url: '/buy' },
-    { name: 'Buy', url: '/buy' },
-  ];
+    // const MenuItems = [
+    //     { Name: "Home", Link: "/" },
+    //     // { Name: "Our Services", Link: "/services" },
+    //     { Name: "Our Story", Link: "/story" },
+    //     { Name: "My Account", Link: user.id ? "/dashboard" : "/login" },
+    //     { Name: "Blog/News", Link: '/blog' },
+    //     { Name: "Get Service Now", Link: "/services" },
+    // ];
+    const MenuItems = [
+        { Name: 'Our Story', Link: '/' },
+        { Name: 'Strains', Link: '/' },
+        { Name: 'Areas Served', Link: '/' },
+        { Name: 'Reviews',Link: '/buy' },
+        { Name: 'Buy', Link: '/buy' },
+    ];
+    const handleIconClick = (url) => {
+        window.open(url, '_blank');
+    };
 
+    return (
+        <AppBar sx={{ background: "#2c3e50" }} position={"static"}>
+            <StyledToolbar>
+                {/*<SocialBox>*/}
+                {/*    <IconButton*/}
+                {/*        onClick={() => handleIconClick('https://www.facebook.com/profile.php?id=61551799658594')}*/}
+                {/*        sx={{ '&:hover': { backgroundColor: 'transparent' } }}*/}
+                {/*    >*/}
+                {/*        <Facebook sx={{ color: 'white' }} />*/}
+                {/*    </IconButton>*/}
+                {/*    <IconButton*/}
+                {/*        onClick={() => handleIconClick('https://www.instagram.com/northern_neck_garbage/')}*/}
+                {/*        sx={{ '&:hover': { backgroundColor: 'transparent' } }}*/}
+                {/*    >*/}
+                {/*        <Instagram sx={{ color: 'white' }} />*/}
+                {/*    </IconButton>*/}
+                {/*    <IconButton*/}
+                {/*        onClick={() => handleIconClick('https://www.twitter.com')}*/}
+                {/*        sx={{ '&:hover': { backgroundColor: 'transparent' } }}*/}
+                {/*    >*/}
+                {/*        <Twitter sx={{ color: 'white' }} />*/}
+                {/*    </IconButton>*/}
 
+                {/*</SocialBox>*/}
 
+                {/* IconButton for mobile view */}
+                <IconButton
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu"
+                    onClick={() => setMobileMenuOpen(true)}
+                    sx={{ display: { md: "none" } }}
+                >
+                    <MenuIcon />
+                </IconButton>
 
-  return (
-    <Box>
-      <AppBar position="sticky" sx={{ backgroundColor: '#1e272e', boxShadow: 'none', fontFamily: 'Montserrat, sans-serif' }}>
+                {/* Menu for desktop view */}
+                <MenuBox sx={{ display: { xs: "none", sm: "none", md: "flex" } }}>
+                    {MenuItems.map((item, index) => (
+                        <Link to={item.Link} style={desktopLinkStyle} key={index}>
 
+                            <Typography
+                                key={index}
+                                sx={{
+                                    cursor: "pointer",
+                                    fontSize: "24px",
+                                    padding: "0 15px",
+                                    color: "white",
+                                }}
+                            >
+                                {item.Name}
+                            </Typography>
+                        </Link>
+                    ))}
+                </MenuBox>
+            </StyledToolbar>
 
-        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Typography
-            variant="h4"
-            component={Link}
-            to="/"
-            sx={{
-                // eslint-disable-next-line no-mixed-spaces-and-tabs
-			  fontFamily: "'Great Vibes', cursive",
-              fontSize: '2rem',
-              color: 'white',
-              textDecoration: 'none',
-              '&:hover': { textDecoration: 'underline' },
-            }}
-          >
-            Northern Neck Clones
-          </Typography>
+            {/* Drawer for mobile view */}
+            <Drawer
+                anchor="left"
+                open={mobileMenuOpen}
+                onClose={() => setMobileMenuOpen(false)}
+            >
+                <Box sx={{ width: 250 }}>
+                    <List>
+                        {MenuItems.map((item, index) => (
+                            <Link to={item.Link} style={mobileLinkStyle} key={index} onClick={() => setMobileMenuOpen(false)}>
+                                <ListItem
+                                    key={index}
+                                    onClick={() => setMobileMenuOpen(false)}
+                                >
 
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            onClick={() => setMobileMenuOpen(true)}
-            sx={{ display: { md: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
+                                    <ListItemText primary={item.Name} />
+                                </ListItem>
+                            </Link>
+                        ))}
+                    </List>
+                </Box>
+                <Link to='/help' >
+                    <Typography      onClick={() => setMobileMenuOpen(false)}
+                                     variant='h4' sx={{
+                        padding: '50px'
 
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
-            {navItems.map((item, index) => (
-              <Button
-                key={index}
-                component={Link}
-                to={item.url}
-                sx={{
-                  color: 'white',
-                  textDecoration: 'none',
-                    // eslint-disable-next-line no-mixed-spaces-and-tabs
-				  fontFamily: 'Montserrat, sans-serif',
-                  marginX: 2,
-                  '&:hover, &:focus': { backgroundColor: '#2c3e50' },
-                  transition: 'background-color 0.3s ease',
-                  borderRadius: '4px',
+                    }}>
+                        Get Help
+                    </Typography>
+                    <span><h3>Or Message Us </h3> </span>
+                </Link>
+            </Drawer>
+
+            {/* Existing Menu component */}
+            <Menu
+                id="demo-positioned-menu"
+                aria-labelledby="demo-positioned-button"
+                open={open}
+                onClose={() => setOpen(!open)}
+                anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
                 }}
-              >
-                {item.name}
-              </Button>
-            ))}
-          </Box>
-
-
-
-        </Toolbar>
-      </AppBar>
-
-      <Drawer
-        anchor="left"
-        open={mobileMenuOpen}
-        onClose={() => setMobileMenuOpen(false)}
-      >
-        <Box sx={{ width: 250, backgroundColor:'black' }} onClick={() => setMobileMenuOpen(false)}>
-          <List>
-            {navItems.map((item, index) => (
-              <ListItem
-                key={index}
-                component={Link}
-                to={item.url}
-                sx={{
-                  color: 'white',
-                  textDecoration: 'none',
-                  '&:hover': { textDecoration: 'underline' },
-                  '&:hover, &:focus': { backgroundColor: '#2c3e50' },
-                  transition: 'background-color 0.3s ease',
-                  borderRadius: '4px',
+                transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
                 }}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <ListItemText primary={item.name} sx={{ color: 'white' }} />
-              </ListItem>
-            ))}
-          </List>
-        </Box>
-      </Drawer>
-
-    </Box>
-  );
+            >
+                <Box sx={{ width: 350, height: "90vh" }}>
+                    {MenuItems.map((item, index) => (
+                        <MenuItem
+                            key={index}
+                            sx={{
+                                cursor: "pointer",
+                                fontSize: "14px",
+                            }}
+                        >
+                            {item.Name}
+                        </MenuItem>
+                    ))}
+                </Box>
+            </Menu>
+        </AppBar>
+    );
 };
 
 export default Header;
