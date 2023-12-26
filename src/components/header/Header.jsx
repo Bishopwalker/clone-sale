@@ -23,15 +23,14 @@ const Header = () => {
 
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [showModal, setShowModal] = useState(false);
+
 
   const navItems = [
     { name: 'Our Story', url: '/about' },
-    { name: 'Strains', url: '/properties' },
+    { name: 'Strains', url: '/buy' },
     { name: 'Areas Served', url: '/cities' },
     { name: 'Reviews', url: '/review' },
-    { name: 'Blog', url: '/blog' },
-    { name: 'Contact', url: '/contact' },
+    { name: 'Buy', url: '/buy' },
   ];
 
 
